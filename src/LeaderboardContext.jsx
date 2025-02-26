@@ -4,17 +4,18 @@ const LeaderboardContext = createContext()
 
 const LeaderboardReducer = (state, action) => {
     switch (action.type) {
-        case 'ADD_SCORE':
-            return state.map((entry) =>
-                entry.name === action.payload.name
-                    ? { ...entry, score: entry.score + action.payload.score }
-                    : entry
-            ).concat(
-                state.some(entry => entry.name === action.payload.name)
-                    ? []
-                    : [{ name: action.payload.name, score: action.payload.score }]
-
-            )
+        case 'ADD_SCORE': {
+            const existingEntry = state.find(entry => entry.name === action.payload.name)
+            if (existingEntry) {
+                return state.map(entry =>
+                    entry.name === action.payload.name
+                        ? { ...entry, score: entry.score + action.payload.score }
+                        : entry
+                )
+            } else {
+                return [...state, { name: action.payload.name, score: action.payload.score }]
+            }
+        }
         default:
             return state
     }
