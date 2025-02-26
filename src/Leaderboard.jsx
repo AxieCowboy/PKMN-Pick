@@ -7,7 +7,7 @@ function Leaderboard() {
   return (
     <div>
       <h1>Leaderboard</h1>
-      <Link to="/">Back to Game</Link>
+      <Link to="/">Home</Link>
       <ul className="list-disc">
         {Leaderboard && Leaderboard.length > 0 ? (
           Leaderboard.map((entry, index) => (
