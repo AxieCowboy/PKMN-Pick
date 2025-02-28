@@ -8,27 +8,27 @@ function Home() {
   const { dispatch } = useLeaderboard()
 
   const fetchRandomPokemon = async () => {
-    const randomID = Math.floor(Math.random() * 151) + 1;
+    const randomID = Math.floor(Math.random() * 151) + 1
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomID}`);
-      if (!response.ok) throw new Error('PKMN not found!');
-      const data = await response.json();
-      setPokemon(data);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomID}`)
+      if (!response.ok) throw new Error('PKMN not found!')
+      const data = await response.json()
+      setPokemon(data)
     } catch (error) {
-      setPokemon(null);
+      setPokemon(null)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchRandomPokemon();
-  }, []);
+    fetchRandomPokemon()
+  }, [])
 
   const handleScore = (change) => {
     if (pokemon) {
-      dispatch({ type: 'ADD_SCORE', payload: { name: pokemon.name, score: change } });
-      fetchRandomPokemon();
+      dispatch({ type: 'ADD_SCORE', payload: { name: pokemon.name, score: change } })
+      fetchRandomPokemon()
     }
-  };
+  }
 
   return (
     <div className="container">
@@ -53,7 +53,7 @@ function Home() {
         )}
       </main>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
